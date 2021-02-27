@@ -1,0 +1,110 @@
+
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+</head>
+
+<body style='text-align:center'>
+
+	<p>VIDEO DIW</p>
+  
+	<video id="medio" width="100%" height="50%" controls>
+	  <source src="video/video Carlos.mp4" type="video/mp4">
+	  Your browser does not support the video tag.
+	</video>
+	<nav>
+		<input type="button" id="play" value="&#9658;">
+		
+		<input type="button" id="retrasar" value="&laquo;">
+		<input type="button" id="adelantar" value="&raquo;">
+	</nav>
+	<strong id=porcentaje> </strong> 
+	 
+</body>
+<script> 
+
+
+	function accionPlay()
+	{
+		if(!medio.paused && !medio.ended) 
+		{
+			medio.pause();
+			play.value='\u25BA'; 
+		document.body.style.backgroundColor = '#fff';
+		}
+		else
+		{
+			medio.play();
+			play.value='||';
+		document.body.style.backgroundColor = 'grey';
+		}
+	}
+	function accionRetrasar()
+	{
+		medio.currentTime = medio.currentTime - 10;
+	}
+	function accionAdelantar()
+	{
+		medio.currentTime = medio.currentTime + 10;
+	}
+
+
+
+	function iniciar() 
+	{
+		medio=document.getElementById('medio');
+		numero=document.getElementById('porcentaje');
+		total=document.getElementById('total');
+		
+		play=document.getElementById('play');
+		retrasar=document.getElementById('retrasar');
+		adelantar=document.getElementById('adelantar');
+
+		
+		play.addEventListener('click', accionPlay);
+		retrasar.addEventListener('click', accionRetrasar);
+		adelantar.addEventListener('click', accionAdelantar);
+		setInterval(contador, 1000);
+	}
+	
+	
+	function contador()
+	{
+
+		var porcentaje = Math.trunc((100 * medio.currentTime) / medio.duration);
+		numero.innerHTML = porcentaje + "%";
+	
+		
+		if (porcentaje < 25){
+		
+			numero.style.color = "blue";
+			
+		}else if(porcentaje < 75){
+		
+			numero.style.color = "orange";
+		
+		
+		}else{
+		
+			numero.style.color = "red";
+		
+		}
+		
+		
+		
+		
+	}
+
+	
+	
+
+
+	window.addEventListener('load', iniciar, false);
+
+
+
+
+</script>
+</html>
+
