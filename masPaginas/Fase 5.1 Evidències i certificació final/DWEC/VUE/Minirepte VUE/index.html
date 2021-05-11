@@ -1,0 +1,52 @@
+
+<html lang="es">
+	<head>
+		<link rel="stylesheet" type="text/css" href="STYLE/style.css">
+		<title>Minirepte VUE</title>
+	</head>
+	<body>
+		<h3>Minirepte VUE</h3>
+		<div id="app">
+			<div class="product">
+
+				<div class="product-image">
+					<img :src="image" />
+				</div>
+
+				<div class="product-info">
+
+					<h1>{{ marca }} {{ modelo }}</h1>
+
+					<div class="caractersiticasVarias">
+						<h3>Caractersiticas:</h3>
+						<ul>
+							<label v-for="(opci, index) in renovarOpciones">
+								<p v-if="index != 'id' && index != 'IMG'">
+									{{ index }}: {{ opci }} <br>
+								</p>
+							</label>
+						</ul>
+					</div>
+
+					<div class="color-box"
+						v-for="(variant, index) in opciones" 
+						:key="variant.id"
+						:style="{'background-image': 'url(' + variant.IMG  + ')' }"
+						@click="actualizarProducto(index)">
+					</div> 
+
+					<h3>Descripcion: </h3>
+					<p>{{ descrip }}</p>
+			   </div> 
+
+
+			
+			</div>
+			<componente-cita @componente-cita="pedirCita" ></componente-cita>
+
+		</div> 
+	</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script type="text/javascript" src="JS/javaScript.js"></script>
