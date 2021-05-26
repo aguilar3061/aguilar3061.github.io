@@ -41,9 +41,7 @@
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">CARLOS</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -178,12 +176,19 @@
 		var porcentaje = Math.trunc((100 * medio.currentTime) / medio.duration);
 		numero.innerHTML = porcentaje + "%";
 
-    if(porcentaje == 50){
+    if(porcentaje == 49){
 
       medio.pause();
-      medio.currentTime = medio.currentTime + 0.50;
-      numero.innerHTML= "Enorabuena has llegado a la mitad del video, pulsa en la pantalla para reanudar"
+      play.value='\u25BA'; 
+		  document.body.style.backgroundColor = '#fff';
 
+      medio.currentTime = medio.currentTime + 0.5; 
+  
+
+    }else if(porcentaje == 50){
+
+      numero.innerHTML= "Enorabuena has llegado a la mitad del video, pulsa en la pantalla para reanudar"
+  
     }else{
       if (porcentaje < 25){
         numero.style.color = "blue";

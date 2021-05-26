@@ -134,14 +134,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   letter-spacing: 2px;
   text-transform: uppercase;
+  
 }
 
 #header .logo a {
-  color: #222222;
+  color: #3DC8B7;
 }
 
 #header .logo img {
-  max-height: 40px;
+  max-height: 70px;
 }
 
 @media (max-width: 992px) {
