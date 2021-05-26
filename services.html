@@ -72,9 +72,8 @@
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Pagina requisito DAW</h2>
-          <p>Aqui podis ver el progreso que se ha ido haciendo a lo largo de todo el curso de DWEC y DIW: </p>
-          <a href="paginasVarias/evidencias/Evidencias.html" class="btn btn-primary btn-lg btn-block col-md-12" role="button" aria-pressed="true">Ir ha evidencias</a>
-          <p></p>
+          <p>Aqui podeis ver el progreso que se ha ido haciendo a lo largo de todo el curso de DWEC y DIW: </p>
+          <a href="paginasVarias/evidencias/Evidencias.html" class="btn-about">Ir ha evidencias</a>
         </div>
 
 
@@ -85,7 +84,19 @@
 
         <div class="section-title">
           <h2>Video interactivo</h2>
-        
+
+        	<video id="medio" width="100%" height="50%" controls>
+            <source src="assets/video/video Carlos.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <nav>
+            <input type="button" id="retrasar" value="&laquo;">
+            <input type="button" id="play" value="&#9658;">
+            <input type="button" id="adelantar" value="&raquo;">
+          </nav>
+          <strong id=porcentaje> </strong> 
+
         </div>
 
       </div>
@@ -120,5 +131,76 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
+
+<script> 
+
+	function accionPlay(){
+
+		if(!medio.paused && !medio.ended){
+			medio.pause();
+			play.value='\u25BA'; 
+		  document.body.style.backgroundColor = '#fff';
+		}
+		else{
+			medio.play();
+			play.value='||';
+		  document.body.style.backgroundColor = 'grey';
+		}
+	}
+	function accionRetrasar(){
+		medio.currentTime = medio.currentTime - 10;
+	}
+	function accionAdelantar(){
+		medio.currentTime = medio.currentTime + 10;
+	}
+
+	function iniciar() 
+	{
+		medio=document.getElementById('medio');
+		numero=document.getElementById('porcentaje');
+		total=document.getElementById('total');
+		
+		play=document.getElementById('play');
+		retrasar=document.getElementById('retrasar');
+		adelantar=document.getElementById('adelantar');
+
+		
+		play.addEventListener('click', accionPlay);
+		retrasar.addEventListener('click', accionRetrasar);
+		adelantar.addEventListener('click', accionAdelantar);
+		setInterval(contador, 100);
+	}
+	
+	
+	function contador()
+	{
+
+		var porcentaje = Math.trunc((100 * medio.currentTime) / medio.duration);
+		numero.innerHTML = porcentaje + "%";
+
+    if(porcentaje == 50){
+
+      medio.pause();
+      medio.currentTime = medio.currentTime + 0.50;
+      numero.innerHTML= "Enorabuena has llegado a la mitad del video, pulsa en la pantalla para reanudar"
+
+    }else{
+      if (porcentaje < 25){
+        numero.style.color = "blue";
+      }else if(porcentaje < 75){
+        numero.style.color = "orange";
+      }else{
+        numero.style.color = "red";
+      }
+    }
+	
+
+	}
+
+	window.addEventListener('load', iniciar, false);
+
+</script>
+
 
 </html>
